@@ -1,18 +1,18 @@
 .container {
   --black-key-color: #222222;
-  --black-key-pressed-color: #555;
+  --black-key-pressed-color: #3498db;
   --black-key-width: 30px;
   --black-key-height: 120px;
 
-  --natural-key-color: #cbcbcb;
-  --natural-key-pressed-color: #dbdbdb;
+  --natural-key-color: #ecf0f1;
+  --natural-key-pressed-color: #2ecc71;
   --natural-key-width: calc(var(--black-key-width) * 2);
   --natural-key-height: calc(var(--black-key-height) * 1.5);
 }
 .keys {
   padding: 10px;
   display: inline-block;
-  background-color: var(--black-key-color);
+  background-color: #34495e;
 }
 
 .key {

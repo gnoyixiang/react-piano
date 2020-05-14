@@ -38,15 +38,26 @@ const PianoStudio = () => {
       <section className={styles.simulator_section}>
         <p>Simulate Keys</p>
 
-        <form onSubmit={handleSubmitAutoPlayKeys}>
-          <input type="text" name="keys" ref={autoPlayInputRef} />
-          <input type="submit" value="play" />
+        <form className={styles.simulator} onSubmit={handleSubmitAutoPlayKeys}>
+          <input className={styles.simulator_input} type="text" name="keys" ref={autoPlayInputRef} />
+          <input className={styles.simulator_submit} type="submit" value="play" />
         </form>
       </section>
     </div>
   );
 
   function simulatePianoPressed(pressedKey) {
+    if (!pressedKey) {
+      return;
+    }
+
+    pressedKey = pressedKey.toUpperCase();
+    const isValidKey = pianoNotes.find((pianoNote = {}) => pianoNote.keyNote === pressedKey);
+    if (!isValidKey) {
+      alert(`Cannot play key: ${pressedKey}`);
+      return;
+    }
+
     const canPressKeyboard = pressedKey && pianoRef && pianoRef.current && pianoRef.current.pressNote;
 
     if (canPressKeyboard) pianoRef.current.pressNote(pressedKey);
