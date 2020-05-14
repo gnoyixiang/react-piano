@@ -1,5 +1,17 @@
+.root {
+  border: 1px solid black;
+  margin-bottom: 40px;
+}
+
+.piano_section {
+}
+.logs_section {
+}
+.simulator_section {
+}
+
 .pressed_notes {
-    display: flex;
+  display: flex;
 }
 
 .pressed_note {

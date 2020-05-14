@@ -18,12 +18,12 @@ const PianoStudio = () => {
   const pianoRef = useRef();
 
   return (
-    <div>
-      <div>
+    <div className={styles.root}>
+      <section className={styles.piano_section}>
         <Piano ref={pianoRef} notes={pianoNotes} onKeyPressed={handleKeyPress} />
-      </div>
+      </section>
 
-      <div>
+      <section className={styles.logs_section}>
         <p>Logs</p>
 
         <div className={styles.pressed_notes}>
@@ -33,16 +33,16 @@ const PianoStudio = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      <div>
+      <section className={styles.simulator_section}>
         <p>Simulate Keys</p>
 
         <form onSubmit={handleSubmitAutoPlayKeys}>
           <input type="text" name="keys" ref={autoPlayInputRef} />
           <input type="submit" value="play" />
         </form>
-      </div>
+      </section>
     </div>
   );
 
