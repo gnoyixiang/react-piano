@@ -1,0 +1,9 @@
+.pressed_notes {
+    display: flex;
+}
+
+.pressed_note {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
