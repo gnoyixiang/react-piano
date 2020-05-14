@@ -1,47 +1,52 @@
 .container {
-  --black-key-color: #000;
-  --black-key-pressed-color: #828282;
-  --black-key-width: 50px;
-  --black-key-height: 100px;
+  --black-key-color: #222222;
+  --black-key-pressed-color: #555;
+  --black-key-width: 30px;
+  --black-key-height: 120px;
 
-  --natural-key-color: #fff;
+  --natural-key-color: #cbcbcb;
   --natural-key-pressed-color: #dbdbdb;
   --natural-key-width: calc(var(--black-key-width) * 2);
-  --natural-key-height: calc(var(--black-key-height) * 2);
+  --natural-key-height: calc(var(--black-key-height) * 1.5);
 }
 .keys {
-  display: flex;
+  padding: 10px;
+  display: inline-block;
+  background-color: var(--black-key-color);
 }
 
 .key {
+  float: left;
+  position: relative;
   cursor: pointer;
-  transition: all 0.07s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 5px;
 }
 
 .black_key {
-  z-index: 2;
+  position: relative;
+  margin: 0 calc(-2px + var(--black-key-width) / -2);
+  top: 0;
+  border: 1px solid #cccccc;
   width: var(--black-key-width);
+  z-index: 2;
   height: var(--black-key-height);
   background-color: var(--black-key-color);
-  right: calc(-1 * var(--black-key-width) / -2);
+  color: white;
 }
 .black_key__pressed {
   background-color: var(--black-key-pressed-color);
 }
 
 .natural_key {
+  border: 1px solid #aaaaaa;
   z-index: 1;
   width: var(--natural-key-width);
   height: var(--natural-key-height);
   background-color: var(--natural-key-color);
-  border: 1px solid black;
-  display: inline-block;
-  position: relative;
-}
-.natural_key_label {
-  position: absolute;
-  bottom: 10px;
-  font-weight: bold;
 }
 .natural_key__pressed {
   background-color: var(--natural-key-pressed-color);
