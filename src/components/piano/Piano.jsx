@@ -16,7 +16,7 @@ const Piano = ({ notes = [], onKeyPressed }) => {
           ) : (
             <NaturalKey key={index} keyNote={keyNote} onPressed={onKeyPressed} />
           );
-        })})
+        })}
       </div>
     </div>
   );

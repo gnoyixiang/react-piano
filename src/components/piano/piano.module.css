@@ -15,7 +15,7 @@
 
 .key {
   cursor: pointer;
-  transition: all .07s ease;
+  transition: all 0.07s ease;
 }
 
 .black_key {
@@ -35,6 +35,13 @@
   height: var(--natural-key-height);
   background-color: var(--natural-key-color);
   border: 1px solid black;
+  display: inline-block;
+  position: relative;
+}
+.natural_key_label {
+  position: absolute;
+  bottom: 10px;
+  font-weight: bold;
 }
 .natural_key__pressed {
   background-color: var(--natural-key-pressed-color);

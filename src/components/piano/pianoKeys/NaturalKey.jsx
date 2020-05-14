@@ -15,7 +15,11 @@ const NaturalKey = ({ keyNote, onPressed }) => {
     [styles.natural_key__pressed]: isPressed
   });
 
-  return <div className={mainClass} onClick={handleKeyPressed} />;
+  return (
+    <div className={mainClass} onClick={handleKeyPressed}>
+      <div className={styles.natural_key_label}>{keyNote}</div>
+    </div>
+  );
 
   // todo duplicate function, merge both
   function handleKeyPressed() {
