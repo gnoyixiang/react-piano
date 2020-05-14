@@ -20,7 +20,11 @@ const BlackKey = forwardRef(({ keyNote, onPressed }, ref) => {
     [styles.black_key__pressed]: isPressed
   });
 
-  return <div className={mainClass} onClick={handleKeyPressed} />;
+  return (
+    <div className={mainClass} onClick={handleKeyPressed}>
+      <div>{keyNote}</div>
+    </div>
+  );
 
   // todo duplicate function, merge both
   function handleKeyPressed() {

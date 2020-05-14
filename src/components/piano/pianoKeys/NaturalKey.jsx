@@ -23,7 +23,7 @@ const NaturalKey = forwardRef(({ keyNote, onPressed }, ref) => {
 
   return (
     <div className={mainClass} onClick={handleKeyPressed}>
-      <div className={styles.natural_key_label}>{keyNote}</div>
+      <div>{keyNote}</div>
     </div>
   );
 
