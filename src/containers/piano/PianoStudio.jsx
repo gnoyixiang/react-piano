@@ -1,19 +1,31 @@
-import React, { useState } from "react";
-import Piano from "../../components/piano/Piano";
+import React, { useState, createRef, useRef } from "react";
 
+import Piano from "../../components/piano/Piano";
 import styles from "./styles/piano-studio.module.css";
+import useAutoPlayKeysOnPiano from "./hooks/useAutoPlayKeysOnPiano";
 
 const PianoStudio = () => {
   const [pressedNotes, setPressedNotes] = useState([]);
+  const [autoPlayNotes, setAutoPlayNotes] = useState([]);
+
+  useAutoPlayKeysOnPiano(autoPlayNotes, {
+    onKeyPress: pressedKey => {
+      simulatePianoPressed(pressedKey);
+    }
+  });
+
+  const autoPlayInputRef = createRef();
+  const pianoRef = useRef();
 
   return (
     <div>
       <div>
-        <Piano notes={pianoNotes} onKeyPressed={handleKeyPress} />
+        <Piano ref={pianoRef} notes={pianoNotes} onKeyPressed={handleKeyPress} />
       </div>
 
       <div>
         <p>Logs</p>
+
         <div className={styles.pressed_notes}>
           {pressedNotes.map((note, index) => (
             <div className={styles.pressed_note} key={index}>
@@ -22,8 +34,32 @@ const PianoStudio = () => {
           ))}
         </div>
       </div>
+
+      <div>
+        <p>Simulate Keys</p>
+
+        <form onSubmit={handleSubmitAutoPlayKeys}>
+          <input type="text" name="keys" ref={autoPlayInputRef} />
+          <input type="submit" value="play" />
+        </form>
+      </div>
     </div>
   );
+
+  function simulatePianoPressed(pressedKey) {
+    const canPressKeyboard = pressedKey && pianoRef && pianoRef.current && pianoRef.current.pressNote;
+
+    if (canPressKeyboard) pianoRef.current.pressNote(pressedKey);
+    else console.log("couldnt press key: ", pressedKey);
+  }
+
+  function handleSubmitAutoPlayKeys(event) {
+    event.preventDefault();
+
+    const rawText = autoPlayInputRef.current.value;
+    const updatedAutoPlayNotes = rawText.split(",");
+    setAutoPlayNotes(updatedAutoPlayNotes);
+  }
 
   function handleKeyPress(pressedNote) {
     const updatedPressedNotes = [...pressedNotes, pressedNote];
