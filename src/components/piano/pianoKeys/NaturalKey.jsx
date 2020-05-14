@@ -1,0 +1,38 @@
+import classNames from "classnames";
+import React, { useState } from "react";
+import { func, string } from "prop-types";
+
+import styles from "../piano.module.css";
+
+const config = {
+  TIME_TO_ACTIVATE_KEY_PRESS: 1000 // 1 millisecond
+};
+
+const NaturalKey = ({ keyNote, onPressed }) => {
+  const [isPressed, setPressed] = useState(false);
+
+  const mainClass = classNames(styles.key, styles.natural_key, {
+    [styles.natural_key__pressed]: isPressed
+  });
+
+  return <div className={mainClass} onClick={handleKeyPressed} />;
+
+  // todo duplicate function, merge both
+  function handleKeyPressed() {
+    // Simulate a finger press on the keyboard before delegating press action to parent component
+    setPressed(true);
+
+    // After X seconds, deactivate the "pressed" state of the keyboard
+    setTimeout(() => setPressed(false), config.TIME_TO_ACTIVATE_KEY_PRESS);
+
+    const hasExternalPresHandler = typeof onPressed === "function";
+    if (hasExternalPresHandler) onPressed(keyNote);
+  }
+};
+
+NaturalKey.propTypes = {
+  onPressed: func,
+  key: string
+};
+
+export default NaturalKey;

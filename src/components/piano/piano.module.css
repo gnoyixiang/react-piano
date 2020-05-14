@@ -1,0 +1,41 @@
+.container {
+  --black-key-color: #000;
+  --black-key-pressed-color: #828282;
+  --black-key-width: 50px;
+  --black-key-height: 100px;
+
+  --natural-key-color: #fff;
+  --natural-key-pressed-color: #dbdbdb;
+  --natural-key-width: calc(var(--black-key-width) * 2);
+  --natural-key-height: calc(var(--black-key-height) * 2);
+}
+.keys {
+  display: flex;
+}
+
+.key {
+  cursor: pointer;
+  transition: all .07s ease;
+}
+
+.black_key {
+  z-index: 2;
+  width: var(--black-key-width);
+  height: var(--black-key-height);
+  background-color: var(--black-key-color);
+  right: calc(-1 * var(--black-key-width) / -2);
+}
+.black_key__pressed {
+  background-color: var(--black-key-pressed-color);
+}
+
+.natural_key {
+  z-index: 1;
+  width: var(--natural-key-width);
+  height: var(--natural-key-height);
+  background-color: var(--natural-key-color);
+  border: 1px solid black;
+}
+.natural_key__pressed {
+  background-color: var(--natural-key-pressed-color);
+}
