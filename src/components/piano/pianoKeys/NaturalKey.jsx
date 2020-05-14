@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { func, string } from "prop-types";
 
 import styles from "../piano.module.css";
@@ -8,8 +8,14 @@ const config = {
   TIME_TO_ACTIVATE_KEY_PRESS: 1000 // 1 millisecond
 };
 
-const NaturalKey = ({ keyNote, onPressed }) => {
+const NaturalKey = forwardRef(({ keyNote, onPressed }, ref) => {
   const [isPressed, setPressed] = useState(false);
+
+  
+  // todo duplicate found. merged
+  useImperativeHandle(ref, () => ({
+    handleKeyPressed
+  }));
 
   const mainClass = classNames(styles.key, styles.natural_key, {
     [styles.natural_key__pressed]: isPressed
@@ -32,7 +38,7 @@ const NaturalKey = ({ keyNote, onPressed }) => {
     const hasExternalPresHandler = typeof onPressed === "function";
     if (hasExternalPresHandler) onPressed(keyNote);
   }
-};
+});
 
 NaturalKey.propTypes = {
   onPressed: func,

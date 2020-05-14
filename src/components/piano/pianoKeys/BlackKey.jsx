@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useImperativeHandle, useState, forwardRef } from "react";
 import classNames from "classnames";
 import { func, string } from "prop-types";
 
@@ -8,8 +8,13 @@ const config = {
   TIME_TO_ACTIVATE_KEY_PRESS: 1000 // 1 millisecond
 };
 
-const BlackKey = ({ keyNote, onPressed }) => {
+const BlackKey = forwardRef(({ keyNote, onPressed }, ref) => {
   const [isPressed, setPressed] = useState(false);
+
+  // todo duplicate found. merged
+  useImperativeHandle(ref, () => ({
+    handleKeyPressed
+  }));
 
   const mainClass = classNames(styles.key, styles.black_key, {
     [styles.black_key__pressed]: isPressed
@@ -28,7 +33,7 @@ const BlackKey = ({ keyNote, onPressed }) => {
     const hasExternalPresHandler = typeof onPressed === "function";
     if (hasExternalPresHandler) onPressed(keyNote);
   }
-};
+});
 
 BlackKey.propTypes = { onPressed: func, keyNote: string };
 
