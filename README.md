@@ -17,8 +17,9 @@ storybook: `npm run storybook`
 - [x] use complex css
 - [x]  allow two pianos on same screen to function perfectly
 - [x] error handle all edge/invalid cases
-- [ ] write jest test
+- [x] write test for all components
+- [ ] write test for all containers
 
 #### SECONDARY MISSION
-- deploy app for public viewing
-- deploy storybook for public viewing
+- [ ] deploy app for public viewing
+- [ ] deploy storybook for public viewing
